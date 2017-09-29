@@ -14,6 +14,7 @@ H5PEditor.widgets.multiple_choice_editor = H5PEditor.MultipleChoiceEditor = (fun
 
     var el = build("div", "multiple_choice_wrapper");
     $container.append(el);
+    el.appendChild(this.make_instructions());
     var el_applet_container = build("div", undefined, el);
     el_applet_container.id = random_string();
 
@@ -22,10 +23,12 @@ H5PEditor.widgets.multiple_choice_editor = H5PEditor.MultipleChoiceEditor = (fun
       this.multiple_choice.data = data.data;
     } catch(ex) {}
 
-    //  hacky wrap fix, editor widget freaks out sometimes due to h5p container wiggling during load
-    setTimeout(function() {
-      this.multiple_choice.width = this.multiple_choice.width;
-    }.bind(this), 1000);
+  };
+
+  C.prototype.make_instructions = function() {
+    var instructions = build("div");
+    instructions.innerHTML += '<p><span style="color:#008080"><strong>Blanker syntax example:</strong></span></p><p><span style="color:#B22222">*</span>right answer<span style="color:#006400">/</span>another right answer<span style="color:#006400">/</span>wrong answer<span style="color:#0000CD">~</span><span style="color:#800080">:</span>hint<span style="color:#B22222">*</span></p><p>1. Expression must be contained by asterisks (<span style="color:#B22222">*</span>).<br />2. Options are separated by forward slash (<span style="color:#006400">/</span>).<br />3. Hint is separated by a colon (<span style="color:#800080">:</span>).<br />4. Wrong answers must be postfixed with a tilde (<span style="color:#0000CD">~</span>).<br />5. Hints and wrong answers are optional.<br />6. If no wrong answers are provided, the multiple choice is converted into a fill the blank style field.</p><p>&nbsp;</p>'
+    return instructions;
   };
 
 
