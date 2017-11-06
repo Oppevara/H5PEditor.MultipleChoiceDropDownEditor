@@ -1,5 +1,5 @@
 
-H5PEditor.widgets.multiple_choice_editor = H5PEditor.MultipleChoiceEditor = (function ($) {
+H5PEditor.widgets.multiple_choice_drop_down_editor = H5PEditor.MultipleChoiceDropDownEditor = (function ($) {
 
   function C(parent, field, params, setValue) {
     this.parent = parent;
