@@ -1,0 +1,8 @@
+.multiple-choice-drop-down-unsupported {
+  color: #B22222;
+  font-size: 110%;
+}
+
+.multiple-choice-drop-down-unsupported strong {
+  color: #008080;
+}

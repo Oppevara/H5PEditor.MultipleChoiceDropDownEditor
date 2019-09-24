@@ -8,12 +8,13 @@ H5PEditor.widgets.multiple_choice_drop_down_editor = H5PEditor.MultipleChoiceDro
     this.setValue = setValue;
     this.multiple_choice = undefined;
   }
-   
+
   C.prototype.appendTo = function ($container) {
     var data = h5p_get_data_obj(this.params);
 
     var el = build("div", "multiple_choice_wrapper");
     $container.append(el);
+    el.appendChild(this.make_unsupported_warning());
     el.appendChild(this.make_instructions());
     var el_applet_container = build("div", undefined, el);
     el_applet_container.id = random_string();
@@ -31,11 +32,22 @@ H5PEditor.widgets.multiple_choice_drop_down_editor = H5PEditor.MultipleChoiceDro
     return instructions;
   };
 
+  /**
+   * Creates an element with warning text about content type no longer beng supported.
+   * @return {HTMLElement} An element with warning message
+   */
+  C.prototype.make_unsupported_warning = function() {
+    return $('<div>', {
+      class: 'multiple-choice-drop-down-unsupported',
+      html: 'Sisutüüp ei ole enam ametlikult toetatud! Palun kasuta sisutüüpi <strong>Advanced fill the blanks</strong>'
+    }).get(0);
+  };
+
 
   C.prototype.save = function() {
     var data = {"data" : undefined};
-    
-    try { 
+
+    try {
       data.data = this.multiple_choice.data;
     } catch(ex) {}
 
@@ -46,10 +58,7 @@ H5PEditor.widgets.multiple_choice_drop_down_editor = H5PEditor.MultipleChoiceDro
 
   C.prototype.validate = function () { this.save(); return true; };
   C.prototype.remove = function () {};
- 
- 
+
+
   return C;
-})(H5P.jQuery); 
-
-
-
+})(H5P.jQuery);
